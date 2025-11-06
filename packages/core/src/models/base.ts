@@ -1,5 +1,6 @@
+import { Emitter } from 'nanoevents'
 import type { Drauu } from '../drauu'
-import type { Brush, Operation, Point } from '../types'
+import type { Brush, EventsMap, Operation, Point } from '../types'
 import { D } from '../utils'
 
 export abstract class BaseModel<T extends SVGElement> {
@@ -8,7 +9,7 @@ export abstract class BaseModel<T extends SVGElement> {
   start: Point = undefined!
   el: T | null = null
 
-  constructor(protected drauu: Drauu) {}
+  constructor(protected drauu: Drauu, protected emitter: Emitter<EventsMap>) {}
 
   onSelected(_el: SVGSVGElement | null): void {
   }
@@ -87,6 +88,8 @@ export abstract class BaseModel<T extends SVGElement> {
 
     if (brush.dasharray)
       el.setAttribute('stroke-dasharray', brush.dasharray)
+
+    this.emitter.emit('newElement', el)
 
     return el
   }

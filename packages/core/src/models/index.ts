@@ -1,5 +1,6 @@
+import { Emitter } from 'nanoevents'
 import type { Drauu } from '../drauu'
-import type { DrawingMode } from '../types'
+import type { DrawingMode, EventsMap } from '../types'
 
 import { DrawModel } from './draw'
 import { EllipseModel } from './ellipse'
@@ -8,14 +9,14 @@ import { LineModel } from './line'
 import { RectModel } from './rect'
 import { StylusModel } from './stylus'
 
-export function createModels(drauu: Drauu): Record<DrawingMode, DrawModel | StylusModel | LineModel | RectModel | EllipseModel | EraserModel> {
+export function createModels(drauu: Drauu, emitter: Emitter<EventsMap>): Record<DrawingMode, DrawModel | StylusModel | LineModel | RectModel | EllipseModel | EraserModel> {
   return {
-    draw: new DrawModel(drauu),
-    stylus: new StylusModel(drauu),
-    line: new LineModel(drauu),
-    rectangle: new RectModel(drauu),
-    ellipse: new EllipseModel(drauu),
-    eraseLine: new EraserModel(drauu),
+    draw: new DrawModel(drauu, emitter),
+    stylus: new StylusModel(drauu, emitter),
+    line: new LineModel(drauu, emitter),
+    rectangle: new RectModel(drauu, emitter),
+    ellipse: new EllipseModel(drauu, emitter),
+    eraseLine: new EraserModel(drauu, emitter),
   }
 }
 

@@ -123,6 +123,7 @@ export interface EventsMap {
   changed: () => void
   mounted: () => void
   unmounted: () => void
+  newElement: (el: SVGElement) => void
 }
 
 export interface Operation {

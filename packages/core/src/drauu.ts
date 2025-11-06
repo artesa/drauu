@@ -12,7 +12,7 @@ export class Drauu {
 
   private _emitter = createNanoEvents<EventsMap>()
   private _originalPointerId: number | null = null
-  private _models = createModels(this)
+  private _models = createModels(this, this._emitter)
   private _currentNode: SVGElement | undefined
   private _opStack: Operation[] = []
   private _opIndex = 0
