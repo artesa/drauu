@@ -61,6 +61,12 @@ export interface Point {
 export interface Options {
   el?: string | SVGSVGElement
 
+  /**
+   * Enable or disable drawing
+   * @default true
+   */
+  enableDrawing?: boolean
+
   brush?: Brush
 
   /**
