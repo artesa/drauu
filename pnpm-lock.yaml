@@ -44,7 +44,7 @@ importers:
 
   packages/drauu:
     dependencies:
-      '@drauu/core':
+      '@artesa/drauu-core':
         specifier: workspace:*
         version: link:../core
 

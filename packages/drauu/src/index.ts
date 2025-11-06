@@ -1,1 +1,1 @@
-export * from '@drauu/core'
+export * from '@artesa/drauu-core'
