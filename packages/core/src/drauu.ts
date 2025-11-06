@@ -38,6 +38,10 @@ export class Drauu {
     return this.options.brush!.mode || 'stylus'
   }
 
+  get enableDrawing() {
+    return this.options.enableDrawing ?? true
+  }
+
   set mode(v: DrawingMode) {
     const unselected = this._models[this.mode]
     unselected.onUnselected()
@@ -140,6 +144,8 @@ export class Drauu {
   }
 
   private eventMove(event: PointerEvent) {
+    if (!this.enableDrawing)
+      return
     if (!this.acceptsInput(event) || !this.drawing)
       return
 
@@ -151,6 +157,8 @@ export class Drauu {
   }
 
   private eventStart(event: PointerEvent) {
+    if (!this.enableDrawing)
+      return
     if (!this.acceptsInput(event))
       return
     event.stopPropagation()
@@ -167,6 +175,8 @@ export class Drauu {
   }
 
   private eventEnd(event: PointerEvent) {
+    if (!this.enableDrawing)
+      return
     if (!this.acceptsInput(event) || !this.drawing)
       return
     const result = this.model._eventUp(event)
