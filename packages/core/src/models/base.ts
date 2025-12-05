@@ -1,4 +1,4 @@
-import { Emitter } from 'nanoevents'
+import type { Emitter } from 'nanoevents'
 import type { Drauu } from '../drauu'
 import type { Brush, EventsMap, Operation, Point } from '../types'
 import { D } from '../utils'
@@ -58,6 +58,11 @@ export abstract class BaseModel<T extends SVGElement> {
         y: (event.pageY / cssZoom - rect.top + offset.y) * scale,
         pressure: event.pressure,
       }
+    }
+    else if (typeof this.drauu.options.coordinateTransform === 'function') {
+      const point = this.drauu.svgPoint!
+      const transformedPoint = this.drauu.options.coordinateTransform(point, el.getScreenCTM()!)
+      return transformedPoint
     }
     else {
       const point = this.drauu.svgPoint!
