@@ -61,8 +61,7 @@ export abstract class BaseModel<T extends SVGElement> {
     }
     else if (typeof this.drauu.options.coordinateTransform === 'function') {
       const point = this.drauu.svgPoint!
-      const transformedPoint = this.drauu.options.coordinateTransform(point, el.getScreenCTM()!)
-      return transformedPoint
+      return this.drauu.options.coordinateTransform(point, event, el.getScreenCTM()!)
     }
     else {
       const point = this.drauu.svgPoint!

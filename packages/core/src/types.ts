@@ -104,7 +104,7 @@ export interface Options {
    * @advanced you don't commonly need this
    * @default true
    */
-  coordinateTransform?: boolean | ((point: Point, ctm: DOMMatrix) => Point)
+  coordinateTransform?: boolean | ((point: DOMPoint, event: PointerEvent, ctm: DOMMatrix) => Point)
 
   /**
    * To calculate the correct touch and mouse event positions for
